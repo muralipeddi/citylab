@@ -1,0 +1,18 @@
+// &spi3 {
+// 	accel_hp: accelerometer_hp: bmi270@2{
+// 		status = "okay";
+// 	};
+// };
+&spi3 {
+    status = "okay";
+
+    bmi270: bmi270@2 {
+        compatible = "bosch,bmi270";
+        reg = <2>;
+        status = "okay";
+        spi-max-frequency = <8000000>;
+        // Uncomment if board requires explicit pins
+        // cs-gpios = <&gpio0 10 GPIO_ACTIVE_LOW>;
+        // int-gpios = <&gpio0 11 GPIO_ACTIVE_HIGH>;
+    };
+};
