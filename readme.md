@@ -30,8 +30,6 @@ https://developer.nordicsemi.com/nRF_Connect_SDK/doc/2.4.0/nrf/libraries/network
 
 ```
 west build -b thingy91_nrf9160_ns --build-dir build_thingy91_nrf9160_ns
-west build -b nrf9160dk_nrf9160_ns --build-dir build_nrf9160dk_nrf9160_ns
-west build -p -b nrf9160dk_nrf9160_ns -- -DSHIELD=nrf7002ek -DDTC_OVERLAY_FILE="nrf9160dk_with_nrf7002ek.overlay" -DOVERLAY_CONFIG="overlay-nrf7002ek-wifi-scan-only.conf"
 west build -t menuconfig
 west flash --erase
 ```
