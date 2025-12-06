@@ -1,0 +1,35 @@
+/* Copyright (c) 2022 Nordic Semiconductor ASA
+ *
+ * SPDX-License-Identifier: LicenseRef-Nordic-5-Clause
+ */
+
+/ {
+	aliases {
+		temp-sensor = &bme680;
+		accelerometer = &adxl362;
+		impact-sensor = &adxl372;
+	};
+};
+
+&i2c2 {
+	bme680: bme680@76 {};
+};
+
+&spi3 {
+	adxl362: adxl362@0 {
+		// autosleep;
+	};
+};
+
+// /* Configure ADXL362 Sampling Rate */
+// &spi3 {
+//     adxl362@0 {
+//         /* Set Output Data Rate to 100 Hz (Default is often 100 or 12.5) */
+//         /* Options: 0=12.5Hz, 1=25Hz, 2=50Hz, 3=100Hz, 4=200Hz, 5=400Hz */
+//         /* Note: The exact syntax depends on the Zephyr version, but typically: */
+//         odr = <3>; 
+//     };
+// };
+
+// /* Change 100 to 50 for 20Hz checks, or 200 for 5Hz checks */
+// #define POLL_INTERVAL_MS 100
