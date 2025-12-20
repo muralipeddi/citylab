@@ -1,0 +1,47 @@
+menu "Application Settings"
+
+config APP_VERSION
+    string "Application version"
+    default "1.0.0"
+
+# --- Stack Sizes ---
+config APPLICATION_THREAD_STACK_SIZE
+    int "Application Thread Stack Size (bytes)"
+    default 4096
+
+config CONNECTION_THREAD_STACK_SIZE
+    int "Connection Thread Stack Size (bytes)"
+    default 2048
+
+# --- ThingsBoard CoAP Settings ---
+config CLOUD_THINGSBOARD_COAP
+    select COAP_UTILS
+    bool "Enables reporting to Thingsboard cloud"
+    default y
+
+config CLOUD_THINGSBOARD_COAP_SERVER_HOSTNAME
+    string "Thingsboard CoAP server hostname"
+    default "coap.thingsboard.cloud"
+
+config CLOUD_THINGSBOARD_COAP_SERVER_PORT
+    int "CoAP server port"
+    default 5683
+    
+config CLOUD_THINGSBOARD_COAP_ACCESS_TOKEN
+    string "Thingsboard device access token"
+
+# --- LED Configuration ---
+# We use a custom simple LED driver now, but we need to check if PWM is available
+config LED_INDICATION_PWM
+    bool "Enable LED indication using the pwm-leds driver"
+    default y if BOARD_THINGY91_NRF9160_NS
+
+endmenu
+
+module = APP
+module-str = Application
+source "${ZEPHYR_BASE}/subsys/logging/Kconfig.template.log_config"
+
+menu "Zephyr Kernel"
+source "Kconfig.zephyr"
+endmenu
