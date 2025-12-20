@@ -1,9 +1,3 @@
-/*
- * Copyright (c) 2022 Nordic Semiconductor ASA
- * SPDX-License-Identifier: LicenseRef-Nordic-5-Clause
- * UPDATED: Uses specific topic thingy91/thingy91_01/data
- */
-
 #include <zephyr/kernel.h>
 #include <zephyr/logging/log.h>
 #include <net/aws_iot.h>
@@ -13,7 +7,7 @@
 LOG_MODULE_REGISTER(aws_transport, CONFIG_LOG_DEFAULT_LEVEL);
 
 // UPDATED TOPIC
-#define AWS_TOPIC "thingy91/thingy91_02/data"
+#define AWS_TOPIC "thingy91/thingy91_XX/data"
 
 static struct k_work_delayable connect_work;
 static bool aws_connected = false;
