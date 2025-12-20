@@ -1,8 +1,3 @@
-/* * Optimized Application Code 
- * Includes: Battery Mapping (94->100), String Performance Fix,
- * and JSON Timestamp Fix (%lld -> %ld)
- */
-
 #include <zephyr/kernel.h>
 #include <zephyr/logging/log.h>
 #include <date_time.h>
