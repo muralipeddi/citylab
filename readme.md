@@ -4,13 +4,7 @@ This documentation provides a step-by-step guide for provisioning, flashing, and
 
 ---
 
-##  System Overview
-
-* 
-**Date:** December 20, 2025 
-
-
-* 
+##  System Overview 
 **System:** AWS IoT Vibration Analysis Pipeline 
 
 
@@ -21,33 +15,21 @@ This documentation provides a step-by-step guide for provisioning, flashing, and
 
 ---
 
-## 🛠 Phase 1: AWS IoT Core Provisioning
+##  Phase 1: AWS IoT Core Provisioning
 
 **Goal:** Create a digital identity and security certificates for the device.
 
-1. 
-**Access AWS IoT Core:** Navigate to **Manage > All devices > Things** in the AWS Console.
+1. **Access AWS IoT Core:** Navigate to **Manage > All devices > Things** in the AWS Console.
 
+2. **Create Thing:** Click **Create things > Create single thing > Next**.
 
-2. 
-**Create Thing:** Click **Create things > Create single thing > Next**.
-
-
-3. 
-**Device Naming:** * **Thing Name:** Enter the exact ID (e.g., `thingy_04`).
-
+3. **Device Naming:** * **Thing Name:** Enter the exact ID (e.g., `thingy_04`).
 
 * > **CRITICAL:** This name must match the `CLIENT_ID` in `prj.conf` and the device name in `aws_transport.c`.
 
+4. **Configure Shadow:** Select **"No shadow"** unless specific logic is required.
 
-
-
-4. 
-**Configure Shadow:** Select **"No shadow"** unless specific logic is required.
-
-
-5. 
-**Certificates:** Select **"Auto-generate a new certificate"** and click **Next**.
+5. **Certificates:** Select **"Auto-generate a new certificate"** and click **Next**.
 
 
 6. 
