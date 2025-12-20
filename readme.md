@@ -74,8 +74,7 @@ This documentation provides a step-by-step guide for provisioning, flashing, and
 
 **Goal:** Ensure data is reaching the S3 Bucket.
 
-1. 
-**Power On:** Turn on the device and monitor logs for `LTE Connected` and `AWS IoT Connected`.
+1. **Power On:** Turn on the device and monitor logs for `LTE Connected` and `AWS IoT Connected`.
 
 2. **S3 Check:** Allow 2–5 minutes for buffering.
 
