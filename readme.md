@@ -46,10 +46,8 @@ This documentation provides a step-by-step guide for provisioning, flashing, and
 4. **Modem Preparation:** In the Serial Monitor, type the command: `AT+CFUN=4`.
 
 5. **Certificate Manager:** * Click the **"Certificate Manager"** button or **"Sec Tag"** tab.
-* 
-**Security Tag:** Use `16842753` (standard for this project).
-* 
-**Upload:** Provide the CA Certificate, Client Certificate, and Private Key.
+* **Security Tag:** Use `16842753` (standard for this project).
+* **Upload:** Provide the CA Certificate, Client Certificate, and Private Key.
 
 6. 
 **Flash:** Click **Update Modem / Write** and verify the "Certificates written successfully" log.
@@ -66,11 +64,9 @@ This documentation provides a step-by-step guide for provisioning, flashing, and
 * **Step A (`prj.conf`):** Locate and edit `CONFIG_AWS_IOT_CLIENT_ID_STATIC="thingy_04"`.
 * **Step B (`aws_transport.c`):** Locate `#define AWS_TOPIC "thingy91/thingy91_XX/data"` and replace `XX` with the device number.
 
-3. 
-**Compile & Flash:** Run a pristine build to generate a new `.hex` file and click the **Flash** button.
+3. **Compile & Flash:** Run a pristine build to generate a new `.hex` file and click the **Flash** button.
 
-4. 
-**Optional:** Batch size and battery heartbeats can be modified in `application.c`.
+4. **Optional:** Batch size and battery heartbeats can be modified in `application.c`.
 
 ---
 
