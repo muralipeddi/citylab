@@ -6,12 +6,7 @@ This documentation provides a step-by-step guide for provisioning, flashing, and
 
 ##  System Overview 
 **System:** AWS IoT Vibration Analysis Pipeline 
-
-
-* 
-**Mode:** Standard Discovery Mode with Direct Query 
-
-
+* **Mode:** Standard Discovery Mode with Direct Query 
 
 ---
 
@@ -31,14 +26,9 @@ This documentation provides a step-by-step guide for provisioning, flashing, and
 
 5. **Certificates:** Select **"Auto-generate a new certificate"** and click **Next**.
 
+6. **Policy:** Attach the `Thingy91_FullAccess` policy and click **Create thing**.
 
-6. 
-**Policy:** Attach the `Thingy91_FullAccess` policy and click **Create thing**.
-
-
-7. 
-**Download Keys:** Download the **Device Certificate** (`.pem.crt`), **Private Key** (`.pem.key`), and **Amazon Root CA 1**.
-
+7. **Download Keys:** Download the **Device Certificate** (`.pem.crt`), **Private Key** (`.pem.key`), and **Amazon Root CA 1**.
 
 
 ---
@@ -47,40 +37,23 @@ This documentation provides a step-by-step guide for provisioning, flashing, and
 
 **Goal:** Load security keys into the nRF9160 modem's secure storage.
 
-1. 
-**Connect Hardware:** Connect the Thingy:91 via USB and ensure it is powered ON.
+1. **Connect Hardware:** Connect the Thingy:91 via USB and ensure it is powered ON.
 
+2. **Launch LTE Link Monitor:** Open the application via nRF Connect for Desktop.
 
-2. 
-**Launch LTE Link Monitor:** Open the application via nRF Connect for Desktop.
+3. **Firmware Check:** Ensure nRF firmware is installed to support AT commands.
 
+4. **Modem Preparation:** In the Serial Monitor, type the command: `AT+CFUN=4`.
 
-3. 
-**Firmware Check:** Ensure nRF firmware is installed to support AT commands.
-
-
-4. 
-**Modem Preparation:** In the Serial Monitor, type the command: `AT+CFUN=4`.
-
-
-5. **Certificate Manager:**
-* Click the **"Certificate Manager"** button or **"Sec Tag"** tab.
-
+5. **Certificate Manager:** * Click the **"Certificate Manager"** button or **"Sec Tag"** tab.
 
 * 
 **Security Tag:** Use `16842753` (standard for this project).
-
-
 * 
 **Upload:** Provide the CA Certificate, Client Certificate, and Private Key.
 
-
-
-
 6. 
 **Flash:** Click **Update Modem / Write** and verify the "Certificates written successfully" log.
-
-
 
 ---
 
@@ -88,29 +61,19 @@ This documentation provides a step-by-step guide for provisioning, flashing, and
 
 **Goal:** Update firmware to transmit using the new Device ID.
 
-1. 
-**Open SDK:** Load the source code in VS Code (nRF Connect SDK).
-
+1. **Open SDK:** Load the source code in VS Code (nRF Connect SDK).
 
 2. **Update IDs:**
 * 
 **Step A (`prj.conf`):** Locate and edit `CONFIG_AWS_IOT_CLIENT_ID_STATIC="thingy_04"`.
-
-
 * 
 **Step B (`aws_transport.c`):** Locate `#define AWS_TOPIC "thingy91/thingy91_XX/data"` and replace `XX` with the device number.
-
-
-
 
 3. 
 **Compile & Flash:** Run a pristine build to generate a new `.hex` file and click the **Flash** button.
 
-
 4. 
 **Optional:** Batch size and battery heartbeats can be modified in `application.c`.
-
-
 
 ---
 
@@ -121,15 +84,9 @@ This documentation provides a step-by-step guide for provisioning, flashing, and
 1. 
 **Power On:** Turn on the device and monitor logs for `LTE Connected` and `AWS IoT Connected`.
 
+2. **S3 Check:** Allow 2–5 minutes for buffering.
 
-2. 
-**S3 Check:** Allow 2–5 minutes for buffering.
-
-
-3. 
-**Verify Folder:** Navigate to S3 Console > `my-vibration-data-store` and confirm the `device_id=thingy_04` folder exists.
-
-
+3. **Verify Folder:** Navigate to S3 Console > `my-vibration-data-store` and confirm the `device_id=thingy_04` folder exists.
 
 ---
 
@@ -141,31 +98,19 @@ This documentation provides a step-by-step guide for provisioning, flashing, and
 
 1. Open **Amazon Athena**.
 
-
 2. Run the repair command: `MSCK REPAIR TABLE vibration_raw;`.
-
 
 3. Verify the output confirms new partitions were added.
 
-
-4. 
-**CSVs:** Data can be downloaded by specifying `device_id` and time range in relevant queries.
-
-
+4. **CSVs:** Data can be downloaded by specifying `device_id` and time range in relevant queries.
 
 ### QuickSight (Visualization)
 
 1. Open the **QuickSight Dashboard**.
 
+2. **Reload Page:** Press **F5** to force a fresh query to Athena (required for Direct Query mode).
 
-2. 
-**Reload Page:** Press **F5** to force a fresh query to Athena (required for Direct Query mode).
-
-
-3. 
-**Verify:** Select the new device from the **"Select Device"** dropdown.
-
-
+3. **Verify:** Select the new device from the **"Select Device"** dropdown.
 
 ---
 
@@ -177,9 +122,7 @@ Because the system uses **Standard Mode** for reliability, Athena must be manual
 
 1. Go to **Athena**.
 
-
 2. Run: `MSCK REPAIR TABLE vibration_raw;`.
-
 
 3. Refresh the **QuickSight** browser page.
 
